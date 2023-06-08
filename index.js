@@ -6,9 +6,11 @@ const port = 9000;
 
 // 允许所有来源
 app.use(cors());
+app.use(express.static('dist'));
+
 
 app.get('/1', (req, res) => {
-    res.send('Hello w zzzz  World!');
+    res.send('Hello World!');
 });
 
 app.listen(port, () => {
