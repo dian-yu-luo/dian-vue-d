@@ -8,13 +8,13 @@ const app = express();
 const port = 9000;
 
 app.use(cors());
-app.use(routes);
-// 允许所有来源
 app.use(express.static('dist'));
 app.use(express.json())
 app.use(express.urlencoded({
     extended: true
 }))
+app.use(routes);
+// 允许所有来源
 
 
 

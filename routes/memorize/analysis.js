@@ -3,7 +3,8 @@ const router = express.Router();
 
 router.post(
     "/analysis", (req, res) => {
-        res.send("this is post tion")
+        res.send("111111")
+        console.log(req.body.data);
     }
 )
 
