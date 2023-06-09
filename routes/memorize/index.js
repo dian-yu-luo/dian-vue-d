@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-router.get("/111", (req, res) => {
-    res.send("hello")
-})
+const analysis = require("./analysis")
+router.use("/memorize", analysis)
 
 module.exports = router;
