@@ -1,10 +1,26 @@
 const express = require('express');
+const lemmatizer = require('node-lemmatizer');
 const router = express.Router();
+
+function getUniqueWordStems(sentence) {
+    // 分割句子成单词数组
+    let words = sentence.split(/\W+/);
+    rets = []
+    for (let index = 0; index < words.length; index++) {
+        const element = words[index];
+        ret = lemmatizer.lemmas(element)
+        rets.push(ret)
+    }
+    rets = [].concat(...rets)
+    return rets;
+}
 
 router.post(
     "/analysis", (req, res) => {
-        res.send("111111")
-        console.log(req.body.data);
+        data = ""
+        data = req.body.data
+        data = getUniqueWordStems(data)
+        res.send(data)
     }
 )
 
