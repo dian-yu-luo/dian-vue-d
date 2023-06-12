@@ -1,6 +1,7 @@
 const express = require('express');
 const lemmatizer = require('node-lemmatizer');
 const router = express.Router();
+import axios from 'axios';
 
 function getUniqueWordStems(sentence) {
     // 分割句子成单词数组
