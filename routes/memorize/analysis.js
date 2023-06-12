@@ -1,7 +1,7 @@
 const express = require('express');
 const lemmatizer = require('node-lemmatizer');
 const router = express.Router();
-import axios from 'axios';
+const axios = require('axios');
 
 function getUniqueWordStems(sentence) {
     // 分割句子成单词数组
@@ -16,13 +16,17 @@ function getUniqueWordStems(sentence) {
     return rets;
 }
 
-router.post(
-    "/analysis", (req, res) => {
-        data = ""
-        data = req.body.data
-        data = getUniqueWordStems(data)
-        res.send(data)
-    }
-)
+router.post("/analysis", (req, res) => {
+    const data = req.body.data;
+    axios.post('http://localhost:5000/test', { sentence: data },)
+        .then(response => {
+            const responseData = response.data;
+            res.send(responseData);
+        })
+        .catch(error => {
+            console.error(error);
+            res.status(500).send('Internal server error');
+        });
+});
 
 module.exports = router;
