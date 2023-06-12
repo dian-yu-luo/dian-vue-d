@@ -16,19 +16,22 @@ db.serialize(() => {
     });
 }); */
 
-/* db.serialize(() => {
-    db.run(
-        "INSERT INTO words (word, time, difficulty) VALUES (?, ?, ?)",
-        ["wor2d", time, 3.4],
-        function (err) {
-            if (err) {
-                return console.log(err.message);
+function insertWord(word, difficulty) {
+
+    db.serialize(() => {
+        db.run(
+            "INSERT INTO words (word, time, difficulty) VALUES (?, ?, ?)",
+            [word, new Date().toLocaleString(), difficulty],
+            function (err) {
+                if (err) {
+                    return console.log(err.message);
+                }
+                console.log(`A row has been inserted with rowid ${this.lastID}`);
             }
-            console.log(`A row has been inserted with rowid ${this.lastID}`);
-        }
-    );
-})
- */
+        );
+    });
+}
+
 
 
 function updateWordTime(word, days) {
@@ -64,4 +67,4 @@ function updateWordTime(word, days) {
 // 调用函数以将时间增加指定天数
 
 
-updateWordTime("word", 100)
+updateWordTime("word", 1)
