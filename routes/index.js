@@ -9,6 +9,6 @@ const test = require("./test")
 // 注册其他路由
 router.use('/users', usersRoutes);
 router.use('/test', test);
-router.use('/', memorize);
+router.use('/memorize', memorize);
 
 module.exports = router;

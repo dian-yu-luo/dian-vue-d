@@ -22,4 +22,11 @@ router.post(
     }
 )
 
+router.post("/getwordmeaning"
+    , (req, res) => {
+        console.log(req.body.data);
+        res.send("想写成什么写什么")
+    }
+)
+
 module.exports = router;

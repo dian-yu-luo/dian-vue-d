@@ -36,3 +36,17 @@ app.get("*", function (req, res) {
 app.listen(port, () => {
     console.log(`Example app listening on http://127.0.0.1:${port}`);
 });
+
+// 同时启动两个项目,可以
+/* const { spawn } = require("child_process");
+const fs = require("fs");
+
+const logFilePath = "python-daemon.log"; // 指定日志文件路径
+const logStream = fs.createWriteStream(logFilePath, { flags: 'a' });
+const child = spawn("python", ["../dian-vue-py/main.py"]);
+child.stdout.on('data', data => {
+    const message = `stdout: ${data}`;
+    console.log(message);
+    logStream.write(`${message}\n`);
+});
+ */

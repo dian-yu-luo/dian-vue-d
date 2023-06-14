@@ -16,7 +16,7 @@ function getUniqueWordStems(sentence) {
     return rets;
 }
 
-router.post("/analysis", (req, res) => {
+router.post("/analysisSentence", (req, res) => {
     const data = req.body.data;
     axios.post('http://localhost:5000/test', { sentence: data },)
         .then(response => {
@@ -24,7 +24,6 @@ router.post("/analysis", (req, res) => {
             res.send(responseData);
         })
         .catch(error => {
-            console.error(error);
             res.status(500).send('Internal server error');
         });
 });
