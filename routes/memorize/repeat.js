@@ -24,8 +24,18 @@ router.post(
 
 router.post("/getwordmeaning"
     , (req, res) => {
-        console.log(req.body.data);
-        res.send("想写成什么写什么")
+        word = req.body.data
+        db.get("SELECT Note FROM wordtable WHERE Word = ?", [word], (err, row) => {
+            if (err) {
+                console.error(err.message);
+            } else {
+                if (row) {
+                    console.log(row.Note);
+                    res.send(row.Note)
+                }
+            }
+        });
+
     }
 )
 
