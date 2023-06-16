@@ -1,6 +1,5 @@
 const express = require('express');
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("diandb.db");
+
 
 const router = express.Router();
 // 难度高,单词
