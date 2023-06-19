@@ -28,8 +28,6 @@ router.post("/getall", (req, res) => {
     const sql = `SELECT * FROM wordtable WHERE Word IN (${data.map(() => '?').join(',')})`;
     const result = db.prepare(sql).all(data);
     console.log(result);
-
-
     res.send("返回对应的界面")
 }
 )
