@@ -1,6 +1,6 @@
 const express = require('express');
 const sqlite = require("better-sqlite3");
-const db = new sqlite("diandb.db");
+const db = new sqlite("testdb.db");
 
 const router = express.Router();
 
@@ -9,18 +9,38 @@ router.post("/level1", (req, res) => {
 });
 
 router.post("/init", (req, res) => {
+    sql = `
+    DROP TABLE IF EXISTS wordnote;
+    CREATE TABLE wordnote (
+        word TEXT PRIMARY KEY,
+        difficulty FLOAT,
+        last_operation_time DATETIME,
+        last_operation_content TEXT,
+        notes TEXT
+    );
+    
+    `
     const str = generateRandomString(8);
     res.send("hello init");
 
-    db.exec("CREATE TABLE IF NOT EXISTS lorem (info TEXT)");
+    db.exec(sql);
 });
 
 router.post("/insert", (req, res) => {
     console.log(req.body.data);
-    res.send("成功");
-
+    res.send("成功laoshi ");
     const stmt = db.prepare("INSERT INTO lorem VALUES (?)");
     stmt.run(generateRandomString(20));
+});
+router.post("/insertWordData", (req, res) => {
+    console.log(req.body.data);
+    res.send("测试数据");
+    sql = `
+    INSERT INTO wordnote (word, difficulty, last_operation_time, last_operation_content, notes) 
+VALUES ('exassssmple', 2.5, '2023-06-16 14:20:00', 'studied for 30 mins', 'This is an example note');
+    `
+    db.exec(sql)
+    
 });
 
 router.post("/deleteAll", (req, res) => {
